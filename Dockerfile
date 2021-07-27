@@ -17,7 +17,7 @@ RUN set -xe; \
     useradd -l -u ${PUID} -g ${PUSER} -m ${PUSER}  && \
     usermod -p "*" ${PUSER} -s /bin/bash
 
-ENV NVM_DIR /${PUSER}/.nvm
+ENV NVM_DIR /home/${PUSER}/.nvm
 
 USER ${PUSER}
 
@@ -43,7 +43,7 @@ RUN if [ ${INSTALL_PM2} = true ]; then \
         echo "" >> ~/.bashrc && \
         echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
         echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc &&\
-        ln -s `npm bin --global` /root/.node-bin &&\
+        ln -s `npm bin --global` $HOME/.node-bin &&\
         pm2 install pm2-logrotate; \
     fi;
 
