@@ -1,4 +1,7 @@
-language: bash
+language: shell
+os: linux
+dist: xenial
+arch: amd64
 sudo: required
 services:
   - docker
