@@ -1,0 +1,25 @@
+version: "3.7"
+
+networks:
+    frontend:
+      driver: ${NETWORKS_DRIVER}
+  
+
+services:
+    app:
+        build: 
+            context: ./
+            args:
+                - INSTALL_PM2=${INSTALL_PM2}
+                - PUID=${PUID}
+                - PGID=${PGID}
+                - PUSER=${PUSER}
+        volumes:
+            - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        ports:
+            - ${APP_PORT_HOST}:${APP_PORT_CONTAINER}
+        networks:
+            frontend:
+                aliases:
+                - ${NGINX_NETWORKS_ALIASES}
+        tty: true
