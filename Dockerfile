@@ -8,9 +8,9 @@ ENV NVM_DIR /root/.nvm
 
 USER root
 
-COPY requirements.txt /api/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
-RUN pip3 install -r /api/requirements.txt
+RUN pip3 install -r /app/requirements.txt
 
 RUN whoami && \
     mkdir -p $NVM_DIR && \
@@ -27,7 +27,7 @@ RUN whoami && \
 
 ENV PATH $PATH:/root/.node-bin
 
-WORKDIR /api
+WORKDIR /app
 
 # CMD ["pm2-runtime", "start", "ecosystem.config.js"]
 CMD ["/bin/bash"]
