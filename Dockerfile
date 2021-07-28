@@ -33,13 +33,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 USER ${PUSER}
+ARG NVM_VERSION=${NVM_VERSION:-0.38.0}
+ARG NODE_VERSION=${NODE_VERSION:-node}
+ENV NODE_VERSION ${NODE_VERSION}
 RUN if [ ${INSTALL_PM2} = true ]; then \
         whoami && \
         mkdir -p $NVM_DIR && \
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash &&\
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash &&\
         . $NVM_DIR/nvm.sh && \
-        nvm install node && \
-        nvm alias node && \
+        nvm install ${NODE_VERSION} &&\
+        nvm use ${NODE_VERSION} &&\
+        nvm alias ${NODE_VERSION} && \
         npm install pm2 -g && \
         echo "" >> ~/.bashrc && \
         echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
