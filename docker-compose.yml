@@ -10,7 +10,10 @@ services:
         build: 
             context: ./
             args:
+                - IMAGE_TAG=${IMAGE_TAG}
+                - NVM_VERSION=${NVM_VERSION}
                 - INSTALL_PM2=${INSTALL_PM2}
+                - NODE_VERSION=${NODE_VERSION}
                 - PUID=${PUID}
                 - PGID=${PGID}
                 - PUSER=${PUSER}
