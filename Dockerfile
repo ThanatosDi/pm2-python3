@@ -1,6 +1,7 @@
-FROM python:3.8.11-slim-buster
+ARG IMAGE_TAG=${IMAGE_TAG:-3.8.11-slim-buster}
+FROM python:${IMAGE_TAG}
 
-LABEL owner="ThanatosDi" version="latest" description="For Symmetry Python API programe."
+LABEL owner="ThanatosDi" version="latest" description="."
 
 # EXPOSE 5004/tcp
 
@@ -48,9 +49,10 @@ RUN if [ ${INSTALL_PM2} = true ]; then \
     fi;
 
 
-ENV PATH $PATH:/root/.node-bin
+ENV PATH $PATH:$HOME/.node-bin
 
 WORKDIR /app
 
 # CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+# CMD ["python3", "app.py"]
 CMD ["/bin/bash"]

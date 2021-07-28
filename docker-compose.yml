@@ -10,6 +10,7 @@ services:
         build: 
             context: ./
             args:
+                - IMAGE_TAG=${IMAGE_TAG}
                 - INSTALL_PM2=${INSTALL_PM2}
                 - PUID=${PUID}
                 - PGID=${PGID}
