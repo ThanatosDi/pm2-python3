@@ -22,5 +22,5 @@ script: ./travis-build.sh
 #     branch: master
 #     condition: -n "${HUGO_VERSION}"
 
-# notifications:
-#   email: false
+notifications:
+ email: false
